@@ -1,0 +1,32 @@
+{
+  "name": "advent-of-code-2017",
+  "version": "1.0",
+  "description": "Advent of code 2017 puzzles solved in TypeScript with a React UI",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack",
+    "test": "karma start"
+  },
+  "devDependencies": {
+    "karma-typescript": "^3.0.8",
+    "ts-loader": "^3.0.5",
+    "typescript": "^2.5.3",
+    "webpack": "^3.8.1",
+	  "@types/react": "^16.0.17",
+    "@types/react-dom": "^16.0.2",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "@types/jasmine": "^2.5.35",
+    "jasmine-core": "^2.4.1",
+    "karma": "^1.5.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-cli": "^1.0.1",
+    "karma-jasmine": "^1.0.2"
+  },
+  "dependencies": {
+  },
+  "repository": {  
+    "type": "git",
+    "url": "https://github.com/Joon/AdventOfCode2017.git"
+  }
+}
