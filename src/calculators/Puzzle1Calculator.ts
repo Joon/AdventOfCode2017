@@ -1,7 +1,6 @@
-class Puzzle1Calculator {
-
-    public calcOutputA(input: string) : string
-    {
+class Puzzle1Calculator implements IPuzzleCalculator {
+    
+    CalcPart1(input: string): string {
         if (input.length == 0)
             return "";
         
@@ -21,8 +20,7 @@ class Puzzle1Calculator {
         return output.toString();
     }
 
-    public calcOutputB(input: string) : string
-    {
+    CalcPart2(input: string): string {
         if (input.length == 0)
             return "";
         
@@ -42,7 +40,6 @@ class Puzzle1Calculator {
 
         return output.toString();
     }
-
 }
 
 export default Puzzle1Calculator;
