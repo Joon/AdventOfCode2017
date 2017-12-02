@@ -34,7 +34,8 @@ class PuzzleCanvas extends React.Component<object, PuzzleState> {
             </div>
 
             </div>                
-            <div>Your puzzle input: <input type="text" onChange={ e => this.updateInputValue(e) }/></div>
+            <div>Your puzzle input: <input className="dataIn" type="text" onChange={ e => this.updateInputValue(e) }/></div>
+            <div>Multi-line input: <textarea className="dataIn" onChange={ e => this.updateInputValue(e) }></textarea></div>
             <div>Your puzzle output A: {this.state.puzzleOutput}</div>
             <div>Your puzzle output B: {this.state.puzzleOutputB}</div>
             </div>);
@@ -58,7 +59,7 @@ class PuzzleCanvas extends React.Component<object, PuzzleState> {
             });
     }
 
-    public updateInputValue(event: React.ChangeEvent<HTMLInputElement>) : void {
+    public updateInputValue(event: React.ChangeEvent<any>) : void {
         var calc = this.state.puzzleCalculator;
         var output = calc.CalcPart1(event.target.value);
         var outputB = calc.CalcPart2(event.target.value);
