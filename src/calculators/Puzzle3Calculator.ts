@@ -113,9 +113,6 @@ class Puzzle2Calculator implements IPuzzleCalculator {
 
     FillSquareSums(input: number[][], fillUpTo: number): number[][]
     {
-        console.log("Filling Sums. Square: ");
-        console.log(input);
-        console.log("offset: " + this.offset);
         var result = input;
 
         let x = -1;
@@ -132,7 +129,7 @@ class Puzzle2Calculator implements IPuzzleCalculator {
             {
                 let workY = y + this.offset;
                 let workX = x + this.offset;
-                console.log("working on y " + workY + " x " + workX)
+
                 currentValue = 0;
                 if (workY > 0)
                 {
@@ -164,7 +161,7 @@ class Puzzle2Calculator implements IPuzzleCalculator {
                         currentValue += result[workY + 1][workX + 1];
                     }
                 }
-                console.log("placing value: " + currentValue);
+
                 if (currentSeq == 1)
                     currentValue = 1;
                 result[workY][workX] = currentValue;
