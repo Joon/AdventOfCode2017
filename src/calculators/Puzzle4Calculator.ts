@@ -1,7 +1,5 @@
-export interface IHash {
-    [letter: string] : number;
-}
-
+import IPuzzleCalculator from "./IPuzzleCalculator";
+import IHash from "./IHash";
 
 class Puzzle4Calculator implements IPuzzleCalculator {
     CalcPart1(input: string): string {
