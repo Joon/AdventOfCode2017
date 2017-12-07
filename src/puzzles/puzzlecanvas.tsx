@@ -6,6 +6,7 @@ import Puzzle2Calculator from "../calculators/Puzzle2Calculator";
 import Puzzle3Calculator from "../calculators/Puzzle3Calculator";
 import Puzzle4Calculator from "../calculators/Puzzle4Calculator";
 import Puzzle5Calculator from "../calculators/Puzzle5Calculator";
+import Puzzle6Calculator from "../calculators/Puzzle6Calculator";
 
 export interface PuzzleState {
     puzzleInput: string,
@@ -38,7 +39,8 @@ class PuzzleCanvas extends React.Component<object, PuzzleState> {
                 <input type="radio" value="Puzzle3" name="puzzleType" onChange={ event => this.selectPuzzle(event) }/> Puzzle 3
                 <input type="radio" value="Puzzle4" name="puzzleType" onChange={ event => this.selectPuzzle(event) }/> Puzzle 4
                 <input type="radio" value="Puzzle5" name="puzzleType" onChange={ event => this.selectPuzzle(event) }/> Puzzle 5
-            </div>
+                <input type="radio" value="Puzzle6" name="puzzleType" onChange={ event => this.selectPuzzle(event) }/> Puzzle 6
+                </div>
             </div>                
             <div>Your puzzle input: <input className="dataIn" type="text" onChange={ e => this.updateInputValue(e) }/></div>
             <div>Multi-line input: <textarea className="dataIn" onChange={ e => this.updateInputValue(e) }></textarea></div>
@@ -56,6 +58,7 @@ class PuzzleCanvas extends React.Component<object, PuzzleState> {
             case "Puzzle3": calc = new Puzzle3Calculator(); break;
             case "Puzzle4": calc = new Puzzle4Calculator(); break;
             case "Puzzle5": calc = new Puzzle5Calculator(); break;
+            case "Puzzle6": calc = new Puzzle6Calculator(); break;
             default: throw "Invalid puzzle number";
         }
                 
