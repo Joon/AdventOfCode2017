@@ -1,5 +1,4 @@
 import IPuzzleCalculator from "./IPuzzleCalculator";
-import { WSAEINPROGRESS } from "constants";
 
 export default class Puzzle10Calculator implements IPuzzleCalculator
 {
@@ -12,25 +11,17 @@ export default class Puzzle10Calculator implements IPuzzleCalculator
         let currentPosition = 0;
         let skipSize = 0;
         for (let cmdSize of input.split(",")) {
-            console.log("current state: " + numbers);
-            console.log("Instruction: " + cmdSize + " currentPosition: " + currentPosition + 
-                " Skip Size: " + skipSize);
             if (+cmdSize > numbers.length)
                 continue;
             let reverseArr = numbers.slice(currentPosition, currentPosition + +cmdSize);
-            console.log("going to reverse: " + reverseArr);
             if (reverseArr.length < +cmdSize) {
                 let concatAdditional = numbers.slice(0, +cmdSize - reverseArr.length);
-                console.log("Got too few numbers. Also adding: " + concatAdditional);
                 reverseArr = reverseArr.concat(...concatAdditional);
-                console.log("NOW going to reverse: " + reverseArr);
             }           
             
             let replaceArr = reverseArr.reverse();
-            console.log("which has now been reversed to: " + replaceArr);
             let replacePos = currentPosition;
             for (let i = 0; i < replaceArr.length; i++) {               
-                console.log("Putting data into array at: " + (replacePos).toString());
                 numbers[replacePos] = replaceArr[i];
                 replacePos++;
                 if (replacePos >= numbers.length)
@@ -45,7 +36,6 @@ export default class Puzzle10Calculator implements IPuzzleCalculator
             }
             skipSize++;
         }
-        console.log("End State: " + numbers);
         return (numbers[0] * numbers[1]).toString();
     }
 
