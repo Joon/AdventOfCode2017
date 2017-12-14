@@ -1,6 +1,5 @@
 import {CellNavigator} from "./Puzzle11Calculator";
 import Puzzle11Calculator from "./Puzzle11Calculator";
-import { PureComponent } from "react";
 
 describe("CellNavigator", () => {
 
@@ -8,10 +7,8 @@ describe("CellNavigator", () => {
         let nav = new CellNavigator();
 
         let c1 = nav.Navigate(nav.Origin, "n");
-        console.log("Now have this many cells: " + nav.AllCells.length);
         nav.LogCells();
         let c2 = nav.Navigate(c1, "n");
-        console.log("Now have this many cells: " + nav.AllCells.length);
         nav.LogCells();
         expect(nav.AllCells.length).toBe(3);
     });
@@ -22,7 +19,6 @@ describe("CellNavigator", () => {
         let c1 = nav.Navigate(nav.Origin, "ne");
         let c2 = nav.Navigate(c1, "ne");
         let c3 = nav.Navigate(c2, "ne");
-        nav.LogCells();
         expect(nav.AllCells.length).toBe(4);
     });
 
@@ -35,7 +31,6 @@ describe("CellNavigator", () => {
         let c4 = nav.Navigate(c3, "sw");
         let c5 = nav.Navigate(c4, "sw");
         let c6 = nav.Navigate(c5, "sw");
-        nav.LogCells();
         expect(nav.AllCells.length).toBe(4);
         expect(c6.X).toBe(0);
         expect(c6.Y).toBe(0);

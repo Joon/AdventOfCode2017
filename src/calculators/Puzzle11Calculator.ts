@@ -204,7 +204,6 @@ export class CellNavigator {
                 else
                     line += " . ";
             }
-            console.log(line);
         }                                    
     }
 
