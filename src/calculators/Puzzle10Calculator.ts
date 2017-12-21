@@ -2,6 +2,9 @@ import IPuzzleCalculator from "./IPuzzleCalculator";
 
 export default class Puzzle10Calculator implements IPuzzleCalculator
 {
+
+    public canvas: HTMLCanvasElement;
+    
     CalcPart1(input: string): string {
         if (input.length == 0)
             return "";

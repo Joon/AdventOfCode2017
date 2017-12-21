@@ -1,6 +1,7 @@
 // place it within your src/ directory
 import * as React from "react";
 import IPuzzleCalculator from "../calculators/IPuzzleCalculator";
+import IDrawablePuzzleCalculator from "../calculators/IDrawablePuzzleCalculator";
 import Puzzle1Calculator from "../calculators/Puzzle1Calculator";
 import Puzzle2Calculator from "../calculators/Puzzle2Calculator";
 import Puzzle3Calculator from "../calculators/Puzzle3Calculator";
@@ -13,12 +14,14 @@ import Puzzle9Calculator from "../calculators/Puzzle9Calculator";
 import Puzzle10Calculator from "../calculators/Puzzle10Calculator";
 import Puzzle11Calculator from "../calculators/Puzzle11Calculator";
 import Puzzle12Calculator from "../calculators/Puzzle12Calculator";
+import Puzzle13Calculator from "../calculators/Puzzle13Calculator";
 
 export interface PuzzleState {
     puzzleInput: string,
     puzzleOutput: string,
     puzzleOutputB: string,
-    puzzleCalculator: IPuzzleCalculator
+    puzzleCalculator: IPuzzleCalculator,
+    drawablePuzzleCalcultor: IDrawablePuzzleCalculator;
   }
 
 class PuzzleCanvas extends React.Component<object, PuzzleState> {
@@ -26,7 +29,7 @@ class PuzzleCanvas extends React.Component<object, PuzzleState> {
     constructor(props: any, context: any) {
         super(props, context);
         var stateObj: PuzzleState;
-        stateObj = { puzzleInput: "test", puzzleOutput: "anchor", puzzleOutputB: "boat", puzzleCalculator: null };
+        stateObj = { puzzleInput: "test", puzzleOutput: "anchor", puzzleOutputB: "boat", puzzleCalculator: null, drawablePuzzleCalcultor: null };
         this.state = stateObj;
     } 
     
@@ -52,17 +55,21 @@ class PuzzleCanvas extends React.Component<object, PuzzleState> {
                 <input type="radio" value="Puzzle10" name="puzzleType" onChange={ event => this.selectPuzzle(event) }/> Puzzle 10
                 <input type="radio" value="Puzzle11" name="puzzleType" onChange={ event => this.selectPuzzle(event) }/> Puzzle 11
                 <input type="radio" value="Puzzle12" name="puzzleType" onChange={ event => this.selectPuzzle(event) }/> Puzzle 12
+                <input type="radio" value="Puzzle13" name="puzzleType" onChange={ event => this.selectPuzzle(event) }/> Puzzle 13
                 </div>
             </div>                
             <div>Your puzzle input: <input className="dataIn" type="text" onChange={ e => this.updateInputValue(e) }/></div>
             <div>Multi-line input: <textarea className="dataIn" onChange={ e => this.updateInputValue(e) }></textarea></div>
             <div>Your puzzle output A: {this.state.puzzleOutput}</div>
             <div>Your puzzle output B: {this.state.puzzleOutputB}</div>
+
+            <canvas id="cnvRender" width="1000" height="1000"/>
             </div>);
     }
 
     public selectPuzzle(event: React.ChangeEvent<HTMLInputElement> ): void {        
         let calc: IPuzzleCalculator = null;
+        let drawcalc: IDrawablePuzzleCalculator = null;
 
         switch(event.target.value) {
             case "Puzzle1": calc = new Puzzle1Calculator(); break;
@@ -77,6 +84,7 @@ class PuzzleCanvas extends React.Component<object, PuzzleState> {
             case "Puzzle10": calc = new Puzzle10Calculator(); break;
             case "Puzzle11": calc = new Puzzle11Calculator(); break;
             case "Puzzle12": calc = new Puzzle12Calculator(); break;
+            case "Puzzle13": drawcalc = new Puzzle13Calculator(); break;
             default: throw "Invalid puzzle number";
         }
                 
@@ -85,15 +93,32 @@ class PuzzleCanvas extends React.Component<object, PuzzleState> {
                 puzzleInput: this.state.puzzleInput,
                 puzzleOutput: this.state.puzzleOutput, 
                 puzzleOutputB: this.state.puzzleOutputB, 
-                puzzleCalculator: calc
+                puzzleCalculator: calc,
+                drawablePuzzleCalcultor: drawcalc
             });
     }
 
     public updateInputValue(event: React.ChangeEvent<any>) : void {
-        var calc = this.state.puzzleCalculator;
-        var output = calc.CalcPart1(event.target.value);
-        var outputB = calc.CalcPart2(event.target.value);
-        this.setState({ puzzleInput: event.target.value, puzzleOutput: output, puzzleOutputB: outputB, puzzleCalculator: this.state.puzzleCalculator });
+        if (this.state.puzzleCalculator) {
+            var calc = this.state.puzzleCalculator;        
+            calc.canvas = document.getElementById('cnvRender') as HTMLCanvasElement;
+            var output = calc.CalcPart1(event.target.value);
+            var outputB = calc.CalcPart2(event.target.value);
+            this.setState({ puzzleInput: event.target.value, puzzleOutput: output, puzzleOutputB: outputB, 
+                puzzleCalculator: this.state.puzzleCalculator, drawablePuzzleCalcultor: this.state.drawablePuzzleCalcultor });
+        } else
+        if (this.state.drawablePuzzleCalcultor) {
+            var dcalc = this.state.drawablePuzzleCalcultor;        
+            dcalc.canvas = document.getElementById('cnvRender') as HTMLCanvasElement;
+            dcalc.CalcPart1(event.target.value).then((output) => {
+                this.setState({ puzzleInput: this.state.puzzleInput, puzzleOutput: output, puzzleOutputB: this.state.puzzleOutputB, 
+                    puzzleCalculator: this.state.puzzleCalculator, drawablePuzzleCalcultor: this.state.drawablePuzzleCalcultor });
+                });
+            dcalc.CalcPart2(event.target.value).then((outputB) => {
+                this.setState({ puzzleInput: this.state.puzzleInput, puzzleOutput: this.state.puzzleOutput, puzzleOutputB: outputB, 
+                    puzzleCalculator: this.state.puzzleCalculator, drawablePuzzleCalcultor: this.state.drawablePuzzleCalcultor });
+                });
+        }
     }
 
 }

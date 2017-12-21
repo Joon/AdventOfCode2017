@@ -12,7 +12,7 @@
     "ts-loader": "^3.0.5",
     "typescript": "^2.5.3",
     "webpack": "^3.8.1",
-	  "@types/react": "^16.0.17",
+    "@types/react": "^16.0.17",
     "@types/react-dom": "^16.0.2",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
@@ -24,8 +24,9 @@
     "karma-jasmine": "^1.0.2"
   },
   "dependencies": {
+    "@types/es6-shim": "^0.31.35"
   },
-  "repository": {  
+  "repository": {
     "type": "git",
     "url": "https://github.com/Joon/AdventOfCode2017.git"
   }
