@@ -17,6 +17,7 @@ import Puzzle12Calculator from "../calculators/Puzzle12Calculator";
 import Puzzle13Calculator from "../calculators/Puzzle13Calculator";
 import Puzzle14Calculator from "../calculators/Puzzle14Calculator";
 import Puzzle15Calculator from "../calculators/Puzzle15Calculator";
+import Puzzle16Calculator from "../calculators/Puzzle16Calculator";
 
 export interface PuzzleState {
     puzzleInput: string,
@@ -60,6 +61,7 @@ class PuzzleCanvas extends React.Component<object, PuzzleState> {
                 <input type="radio" value="Puzzle13" name="puzzleType" onChange={ event => this.selectPuzzle(event) }/> Puzzle 13
                 <input type="radio" value="Puzzle14" name="puzzleType" onChange={ event => this.selectPuzzle(event) }/> Puzzle 14
                 <input type="radio" value="Puzzle15" name="puzzleType" onChange={ event => this.selectPuzzle(event) }/> Puzzle 15
+                <input type="radio" value="Puzzle16" name="puzzleType" onChange={ event => this.selectPuzzle(event) }/> Puzzle 16
                 </div>
             </div>                
             <div>Your puzzle input: <input className="dataIn" type="text" onChange={ e => this.updateInputValue(e) }/></div>
@@ -91,6 +93,7 @@ class PuzzleCanvas extends React.Component<object, PuzzleState> {
             case "Puzzle13": drawcalc = new Puzzle13Calculator(); break;
             case "Puzzle14": calc = new Puzzle14Calculator(); break;
             case "Puzzle15": calc = new Puzzle15Calculator(); break;
+            case "Puzzle16": calc = new Puzzle16Calculator(); break;
             default: throw "Invalid puzzle number";
         }
                 
@@ -107,7 +110,6 @@ class PuzzleCanvas extends React.Component<object, PuzzleState> {
     public updateInputValue(event: React.ChangeEvent<any>) : void {
         if (this.state.puzzleCalculator) {
             var calc = this.state.puzzleCalculator;        
-            calc.canvas = document.getElementById('cnvRender') as HTMLCanvasElement;
             var output = calc.CalcPart1(event.target.value);
             var outputB = calc.CalcPart2(event.target.value);
             this.setState({ puzzleInput: event.target.value, puzzleOutput: output, puzzleOutputB: outputB, 

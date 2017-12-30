@@ -2,8 +2,7 @@ import IPuzzleCalculator from "./IPuzzleCalculator";
 import Puzzle10Calculator from "./Puzzle10Calculator";
 
 export default class Puzzle14Calculator implements IPuzzleCalculator {
-    canvas: HTMLCanvasElement;
-
+    
     CalcPart1(input: string): string {
         
         let hashCalc = new Puzzle10Calculator();

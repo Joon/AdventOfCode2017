@@ -24,9 +24,7 @@ class Generator {
 }
 
 export default class Puzzle15Calculator implements IPuzzleCalculator {
-    canvas: HTMLCanvasElement;
-    drawctxt: CanvasRenderingContext2D;
-
+   
     CalcPart1(input: string): string {
         if (input.length == 0)
             return "";
