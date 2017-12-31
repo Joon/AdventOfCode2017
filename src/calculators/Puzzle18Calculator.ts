@@ -57,7 +57,10 @@ export class DuetProcessor {
 
     ProcessInstructions(instructions: string[]) {
         for (let instruction of instructions) {
-            
+            let instructionParts = instruction.split(" ");
+            if (instructionParts[0] == "add") {
+                this.Buffers.Add(instructionParts[1], instructionParts[2]);
+            }
         }
     }
 }
