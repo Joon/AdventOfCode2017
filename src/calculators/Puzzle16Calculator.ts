@@ -103,9 +103,9 @@ export default class Puzzle16Calculator implements IPuzzleCalculator {
                 else
                     return current;
             });
-            console.log(previousResults);
+        
         }
-        console.log(previousResults.length + " different permutations in cycle");
+        
         let cycleLeftOver = (1000000000 % previousResults.length);
         return previousResults[(cycleLeftOver > 0 ? cycleLeftOver : previousResults.length) - 1];
     }

@@ -56,7 +56,7 @@ describe("Firewall",  () => {
         fw.scanners.push(new Scanner(3, 5));
         fw.totalScanDepth = 3;
         
-        fw.packets.push(new Packet((p) => {console.log("ohnoes"); return false;}, (p) => {console.log("awwwyeah");}, -1));
+        fw.packets.push(new Packet((p) => { return false;}, (p) => { }, -1));
         
         fw.Tick(0);
 
@@ -74,16 +74,7 @@ describe("Firewall",  () => {
             fw.Tick(i);
         }
 
-        for(let scan of fw.scanners) {
-            console.log("Scanner at " + scan.scanColumn + " at pos: " + scan.currentScanPos);
-        }
-
         fw.Tick(0);
-
-        console.log("Next tick");
-        for(let scan of fw.scanners) {
-            console.log("Scanner at " + scan.scanColumn + " at pos: " + scan.currentScanPos);
-        }
     });
 });
 
@@ -100,7 +91,7 @@ describe("Puzzle13Calculator", () => {
 
     it("must pass site puzzle part 2", () => {
         let calc = new Puzzle13Calculator();
-        calc.logInfo = true;
+        
         let input = `0: 3
 1: 2
 4: 4

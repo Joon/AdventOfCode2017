@@ -7,8 +7,6 @@ describe("Puzzle14Calculator", () => {
 
         let answer1 = item.CalcPart1("flqrgnkx");
 
-        console.log(answer1);
-
         expect(answer1).toBe("8108");
 
     })
@@ -18,8 +16,6 @@ describe("Puzzle14Calculator", () => {
         let item = new Puzzle14Calculator();
 
         let answer1 = item.CalcPart2("flqrgnkx");
-
-        console.log(answer1);
 
         expect(answer1).toBe("1242");
 

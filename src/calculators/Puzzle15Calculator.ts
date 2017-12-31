@@ -56,7 +56,7 @@ export default class Puzzle15Calculator implements IPuzzleCalculator {
             return "";
 
         let inputs = input.split(/\n/);
-        console.log(inputs[0]);
+
         let genAStart = +inputs[0].split(" ")[4];
         let genBStart = +inputs[1].split(" ")[4];
 
