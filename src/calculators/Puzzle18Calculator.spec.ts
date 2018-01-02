@@ -1,7 +1,7 @@
 import Puzzle18Calculator from "./Puzzle18Calculator";
 import { DuetBuffers } from "./Puzzle18Calculator";
 
-describe("Buffers", () => {
+describe("DuetBuffers", () => {
     
     it("Initializes 16 buffers with zero on construction", () => {
         let item = new DuetBuffers();
@@ -66,5 +66,42 @@ describe("Buffers", () => {
         item.Mod("a", "b");
         expect(item.Contents["a"]).toBe(1);
     })
+
+});
+
+describe("Puzzle18Calculator", () => {
+    
+    it("Processes site input correctly", () => {
+        let item = new Puzzle18Calculator();
+        let input = `set a 1
+add a 2
+mul a a
+mod a 5
+snd a
+set a 0
+rcv a
+jgz a -1
+set a 1
+jgz a -2`;
+
+        let output = item.CalcPart1(input);
+        
+        expect(output).toBe("4");
+    })
+
+    it("Processes site example 2 correctly", () => {
+        let item = new Puzzle18Calculator();
+        let input = `snd 1
+snd 2
+snd p
+rcv a
+rcv b
+rcv c
+rcv d`;
+
+        let output = item.CalcPart2(input);
+        
+        expect(output).toBe("3");
+    });
 
 });
