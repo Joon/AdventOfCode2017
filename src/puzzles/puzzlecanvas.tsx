@@ -21,6 +21,7 @@ import Puzzle16Calculator from "../calculators/Puzzle16Calculator";
 import Puzzle17Calculator from "../calculators/Puzzle17Calculator";
 import Puzzle18Calculator from "../calculators/Puzzle18Calculator";
 import Puzzle19Calculator from "../calculators/Puzzle19Calculator";
+import Puzzle20Calculator from "../calculators/Puzzle20Calculator";
 
 export interface PuzzleState {
     puzzleInput: string,
@@ -68,6 +69,7 @@ class PuzzleCanvas extends React.Component<object, PuzzleState> {
                 <input type="radio" value="Puzzle17" name="puzzleType" onChange={ event => this.selectPuzzle(event) }/> Puzzle 17
                 <input type="radio" value="Puzzle18" name="puzzleType" onChange={ event => this.selectPuzzle(event) }/> Puzzle 18
                 <input type="radio" value="Puzzle19" name="puzzleType" onChange={ event => this.selectPuzzle(event) }/> Puzzle 19
+                <input type="radio" value="Puzzle20" name="puzzleType" onChange={ event => this.selectPuzzle(event) }/> Puzzle 20
                 </div>
             </div>                
             <div>Your puzzle input: <input className="dataIn" type="text" onChange={ e => this.updateInputValue(e) }/></div>
@@ -103,6 +105,7 @@ class PuzzleCanvas extends React.Component<object, PuzzleState> {
             case "Puzzle17": calc = new Puzzle17Calculator(); break;
             case "Puzzle18": calc = new Puzzle18Calculator(); break;
             case "Puzzle19": calc = new Puzzle19Calculator(); break;
+            case "Puzzle20": calc = new Puzzle20Calculator(); break;
             default: throw "Invalid puzzle number";
         }
                 

@@ -154,7 +154,7 @@ export default class Puzzle19Calculator implements IPuzzleCalculator {
         let navigator = new LandscapeNavigator(landscape);
         navigator.IdentifyStart();
         while(!navigator.MoveToEndOfLine()) {
-            console.log("moved to: " + navigator.X + ":" + navigator.Y);
+            ;
         }
 
         return navigator;
