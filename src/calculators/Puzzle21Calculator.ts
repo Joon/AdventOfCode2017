@@ -277,7 +277,6 @@ export default class Puzzle21Calculator implements IPuzzleCalculator {
             }
             workingGrid = this.CombineGrids(transformedGrids);
         }
-        console.log(workingGrid.LogStructure());
         return workingGrid.CountOn().toString();
     }
 
